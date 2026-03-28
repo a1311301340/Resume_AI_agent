@@ -1,0 +1,4 @@
+﻿version: '3.9'
+services:
+  # TODO: add backend/frontend services
+

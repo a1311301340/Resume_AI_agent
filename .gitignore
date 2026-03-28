@@ -1,0 +1,10 @@
+__pycache__/
+.pytest_cache/
+*.pyc
+.env
+.venv/
+node_modules/
+dist/
+ai_job_agent_backend/uploads/
+ai_job_agent_backend/outputs/
+

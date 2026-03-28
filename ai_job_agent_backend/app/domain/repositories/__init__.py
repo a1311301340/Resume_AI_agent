@@ -1,0 +1,2 @@
+"""Domain repository abstractions."""
+
