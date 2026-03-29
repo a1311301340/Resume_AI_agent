@@ -20,9 +20,13 @@ class Settings(BaseSettings):
     OPENAI_API_KEY: str = ""
     OPENAI_BASE_URL: str = ""
     MODEL_NAME: str = "gpt-4o-mini"
+    DASHSCOPE_API_KEY: str = ""
     BAILIAN_API_KEY: str = ""
     BAILIAN_APP_ID: str = ""
     BAILIAN_BASE_URL: str = "https://dashscope.aliyuncs.com"
+    BAILIAN_COMPAT_BASE_URL: str = "https://dashscope.aliyuncs.com/compatible-mode/v1"
+    BAILIAN_CHAT_MODEL: str = "qwen3.5-plus"
+    BAILIAN_ENABLE_THINKING: bool = True
     BAILIAN_TIMEOUT_SEC: int = 60
     LIBREOFFICE_SOFFICE: str = ""
 
@@ -54,6 +58,11 @@ class Settings(BaseSettings):
     def bailian_completion_url(self) -> str:
         base = self.BAILIAN_BASE_URL.rstrip("/")
         return f"{base}/api/v1/apps/{self.BAILIAN_APP_ID}/completion"
+
+    @property
+    def dashscope_api_key(self) -> str:
+        # Backward compatible: prefer DASHSCOPE_API_KEY, fallback to BAILIAN_API_KEY.
+        return (self.DASHSCOPE_API_KEY or self.BAILIAN_API_KEY or "").strip()
 
 
 settings = Settings()
